@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="table.css">
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<h1 align="center">Approved Proposals Entry</h1>
+<button ng-click="new_proposal_entry()" class="w3-btn w3-green w3-ripple"  >New Proposal Entry </button>
+
+<br>
+<br>
+
+<table  ng-show="table_show" align = "center" border='1'  >
+
+  <tr>
+    <th align = "right" width ='60%'>PROPOSAL ID</th>
+     <td align = "center "><input   name = "proposal_id" ng-model="proposal_id"  required></td>
+  </tr>
+  
+  <tr>
+    <th>REGION</th>
+     <td align = "left "><input type="text" name= "region" ng-model="region" ></td>
+  </tr>
+ 
+  <tr>
+    <th>COUNTRY </th>
+     <td align = "left "><input type="text" name= "country" ng-model="country"></td>
+  </tr>
+  <tr>
+    <th>PROPOSAL TYPE</th>
+     <td align = "left "><input type="text"  name= "proposal_type" ng-model="proposal_type" ></td>
+  </tr>
+  <tr>
+    <th>PROPOSAL DATE</th>
+     <td align = "left "><input type="date" name= "proposal_date" ng-model="proposal_date" ></td>
+  </tr>
+    <tr>
+    <th>APPROVAL DATE</th>
+     <td align = "left "><input type="date" name= "approval_date" ng-model="approval_date" ></td>
+  </tr>
+    <tr>
+    <th>Shared with procurement team on
+</th>
+     <td align = "left "><input type="date" name= "shared_with_procurement_team_on" ng-model="shared_with_procurement_team_on" ></td>
+  </tr>
+    <tr>
+    <th>Approver</th>
+     <td align = "left "><input type="text" name= "approver" ng-model="approver" ></td>
+  </tr>
+    <tr>
+    <th>Number of Tasks Covered </th>
+     <td align = "left "><input type="number" name= "number_of_tasks_covered" ng-model="number_of_tasks_covered"  ></td>
+  </tr>
+    <tr>
+    <th>Device Qty </th>
+     <td align = "left "><input type="number" name= "device_qty" ng-model="device_qty" ></td>
+  </tr>
+    <tr>
+    <th>Accessary/Periperal Qty </th>
+     <td align = "left "><input type="number"  name= "accessary_periperal_qty" ng-model="accessary_periperal_qty" ></td>
+  </tr>
+  </tr>
+    <tr>
+    <th>Total Qty </th>
+     <td align = "left"><input type="number" name= "total_qty" ng-model="total_qty" ></td>
+  </tr>
+  </tr>
+    <tr>
+    <th>Status</th>
+     <td align = "center "><b>APPROVED</b></td>
+  </tr>
+  
+  </table>
+<br>
+
+
+ <button ng-show="table_show" class="w3-btn w3-red w3-ripple" ng-click="submitbutton()" style="float: right;" >Submit </button>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.4.5/angular-route.js"></script>
+<script src = "/controllers/proposal_controller.js"> </script>
+
+</body>
+</html>

@@ -1,10 +1,6 @@
 var app = angular.module("myApp", []);
-app.controller("myCtrl", function($scope) {
-  $scope.myTxt = "You have not yet clicked submit";
-  $scope.myFunc = function () {
-      $scope.myTxt = "You clicked submit!";
-  }
-  
+app.controller("myCtrl", function($scope,$http) {
+
   	$scope.table_show = false ;
 	$scope.new_proposal_entry = function() {
 	$scope.table_show = !$scope.table_show ;
@@ -21,29 +17,43 @@ app.controller("myCtrl", function($scope) {
 		else{
 		alert("Submitted Successfully ");
 		}
-		/* var obj = new Object();
-   obj.name = "Raj";
-   obj.age  = 32;
-   obj.married = false;
-   var jsonString= JSON.stringify(obj);*/
-		var app_proposal_entry_obj = new Object();
-		app_proposal_entry_obj.proposal_id = $scope.proposal_id;
-		app_proposal_entry_obj.region = $scope.region ;
-		app_proposal_entry_obj.country = $scope.country ;
-		app_proposal_entry_obj.proposal_type = $scope.proposal_type ;
-		app_proposal_entry_obj.proposal_date = $scope.proposal_date.toLocaleDateString() ;
-		app_proposal_entry_obj.approval_date = $scope.approval_date.toLocaleDateString() ;
-		app_proposal_entry_obj.shared_with_procurement_team_on = $scope.shared_with_procurement_team_on.toLocaleDateString() ;
-		app_proposal_entry_obj.approver = $scope.approver ;
-		app_proposal_entry_obj.number_of_tasks_covered = $scope.number_of_tasks_covered ;
-		app_proposal_entry_obj.device_qty = $scope.device_qty ;
-		app_proposal_entry_obj.accessary_periperal_qty = $scope.accessary_periperal_qty ;
-		app_proposal_entry_obj.total_qty = $scope.total_qty;
-		app_proposal_entry_obj.status = "APPROVED";
-		var app_proposal_entry_jsonString = JSON.stringify(app_proposal_entry_obj);
-	alert(app_proposal_entry_jsonString);
+		
+		var app_proposal_entry_obj = new FormData();
+		
+		app_proposal_entry_obj.append('proposal_id', $scope.proposal_id);
+		app_proposal_entry_obj.append('region', $scope.region);
+		app_proposal_entry_obj.append('country', $scope.country);
+		app_proposal_entry_obj.append('proposal_type', $scope.proposal_type);
+		app_proposal_entry_obj.append('proposal_date', $scope.proposal_date.toLocaleDateString());
+		app_proposal_entry_obj.append('approval_date', $scope.approval_date.toLocaleDateString());
+		app_proposal_entry_obj.append('shared_with_procurement_team_on', $scope.shared_with_procurement_team_on.toLocaleDateString());
+		app_proposal_entry_obj.append('approver', $scope.approver);
+		app_proposal_entry_obj.append('number_of_tasks_covered', $scope.number_of_tasks_covered);
+		app_proposal_entry_obj.append('device_qty', $scope.device_qty);
+		app_proposal_entry_obj.append('accessary_periperal_qty', $scope.accessary_periperal_qty);
+		app_proposal_entry_obj.append('total_qty', $scope.total_qty);
+		app_proposal_entry_obj.append('status', 'APPROVED');
 	
-	console.log('app_proposal_entry_jsonString'+app_proposal_entry_jsonString);
-		return;
+				
+		console.log('clicked submit');
+
+  
+		$http({
+			url: 'http://localhost:5000/proposal_form',
+			method: 'POST',
+			data:app_proposal_entry_obj,
+	   	    transformRequest: angular.identity,
+            headers: {
+                    'Content-Type': undefined
+            }
+	
+			})
+			.success(function(data) {
+                console.log('Proposal form submitted successfully....');
+				})
+			.then(function (httpResponse) {
+				console.log('response:', httpResponse);
+			})
+
     };
 });

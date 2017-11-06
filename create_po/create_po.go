@@ -82,7 +82,7 @@ func (t *ManagePurchaseOrder) Init(stub shim.ChaincodeStubInterface, function st
 	}
 	var purchase_order_form_empty []string
 	purchase_order_form_empty_json_as_bytes, _ := json.Marshal(purchase_order_form_empty)								//marshal an emtpy array of strings to clear the index
-	err = stub.PutState(approved_purchase_order_entry, purchase_order_empty_json_as_bytes)
+	err = stub.PutState(approved_purchase_order_entry, purchase_order_form_empty_json_as_bytes)
 	if err != nil {
 		return nil, err
 	}

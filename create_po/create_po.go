@@ -33,7 +33,7 @@ type ManagePurchaseOrder struct {
 
 var approved_purchase_order_entry = "approved_purchase_order_entry"				//name for the key/value that will store a list of all known  Tier3 Form
 
-type purchase_order struct{
+type purchase_order struct{ 
 								// Attributes of a Form 
 	proposal_id string `json:"proposal_id"`	
 	purchase_order_no string `json:"purchase_order_no"`
